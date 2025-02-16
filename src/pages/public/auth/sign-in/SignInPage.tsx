@@ -10,6 +10,7 @@ import { t } from 'i18next';
 
 export function SignInPage() {
   const page = useSignInPage();
+  const formik = page.formik;
   return (
     <div className={'grid lg:min-h-screen grid-cols-2'}>
       <div className={'h-full bg-primary-main'}></div>
@@ -23,16 +24,34 @@ export function SignInPage() {
           <CardBody>
             <Grid gap={'md'}>
               <div className={'capitalize'}>{t('input_username_and_password_for_sign_in')}</div>
-              <InputText id={'email'} type={'email'} label={t('email')} placeholder={t('insert_email')} required />
+              <InputText
+                id={'email'}
+                type={'email'}
+                label={t('email')}
+                placeholder={t('insert_email')}
+                required
+                name={'email'}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.email}
+                errorMessage={formik.touched.email && formik.errors.email}
+              />
               <InputText
                 id={'password'}
                 type={page.showPassword ? 'text' : 'password'}
                 label={t('password')}
                 placeholder={t('insert_password')}
                 required
+                name={'password'}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.password}
+                errorMessage={formik.touched.password && formik.errors.password}
               />
               <CheckBox onChange={page.setShowPassword} checked={page.showPassword} label={'show password'} />
-              <Button>{t('sign_in')}</Button>
+              <Button loading={page.loading} onClick={() => formik.handleSubmit()}>
+                {t('sign_in')}
+              </Button>
             </Grid>
           </CardBody>
         </Card>

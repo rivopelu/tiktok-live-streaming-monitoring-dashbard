@@ -1,5 +1,5 @@
 import { twMerge } from 'tailwind-merge';
-import { HTMLInputTypeAttribute, ReactNode } from 'react';
+import { ChangeEventHandler, FocusEventHandler, HTMLInputTypeAttribute, ReactNode } from 'react';
 
 export function InputText(props: IProps) {
   return (
@@ -12,6 +12,10 @@ export function InputText(props: IProps) {
       <div className={twMerge('relative flex items-center bg-white')}>
         {props.startIcon && <span className="absolute left-3 flex items-center pr-3">{props.startIcon}</span>}
         <input
+          onBlur={props.onBlur}
+          onChange={props.onChange}
+          value={props.value}
+          name={props.name}
           type={props.type}
           placeholder={props.placeholder || 'placeholder'}
           className={twMerge(
@@ -42,6 +46,10 @@ interface IProps {
   type?: HTMLInputTypeAttribute;
   startIcon?: ReactNode;
   endIcon?: ReactNode;
-  errorMessage?: string;
+  errorMessage?: any;
   helperText?: string;
+  name?: string;
+  value?: string;
+  onBlur?: FocusEventHandler<HTMLInputElement>;
+  onChange?: ChangeEventHandler<HTMLInputElement>;
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import { ReactNode } from 'react';
 import { PAGE_TYPE_ENUM } from '../enums/page-type-enum.ts';
 
 export function MainProviders(props: IProps) {
@@ -6,6 +6,6 @@ export function MainProviders(props: IProps) {
 }
 
 interface IProps {
-  children: React.ReactNode;
+  children: ReactNode;
   type: PAGE_TYPE_ENUM;
 }

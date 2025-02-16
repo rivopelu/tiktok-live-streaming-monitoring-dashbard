@@ -9,14 +9,17 @@ import { BrowserRouter } from 'react-router-dom';
 import { ENV } from './constants/env.ts';
 import { Provider } from 'react-redux';
 import store from './redux/store.ts';
+import AuthProvider from './providers/AuthProviders.tsx';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <Provider store={store}>
       <BrowserRouter>
-        <StompSessionProvider url={ENV.BASE_URL + '/ws'} reconnectDelay={2000}>
-          <App />
-        </StompSessionProvider>
+        <AuthProvider>
+          <StompSessionProvider url={ENV.BASE_URL + '/ws'} reconnectDelay={2000}>
+            <App />
+          </StompSessionProvider>
+        </AuthProvider>
       </BrowserRouter>
     </Provider>
   </StrictMode>,

@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { MouseEventHandler, ReactNode } from 'react';
 import { twMerge } from 'tailwind-merge';
 
 export function Button(props: IProps) {
@@ -19,6 +19,7 @@ export function Button(props: IProps) {
 
   return (
     <button
+      onClick={props.onClick}
       className={twMerge(
         'bg-white border-2 w-full duration-200 py-2 px-4 cursor-pointer cursor-pointer ',
         'hover:bg-primary-main/30  ',
@@ -26,7 +27,7 @@ export function Button(props: IProps) {
         checkRounded(),
       )}
     >
-      {props.children}
+      <div>{props.loading ? 'loading...' : props.children}</div>
     </button>
   );
 }
@@ -34,4 +35,6 @@ export function Button(props: IProps) {
 interface IProps {
   children: ReactNode;
   rounded?: 'full' | 'small' | 'medium' | 'large';
+  onClick?: MouseEventHandler<HTMLButtonElement>;
+  loading?: boolean;
 }
