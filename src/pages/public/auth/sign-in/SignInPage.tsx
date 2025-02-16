@@ -6,6 +6,7 @@ import { Grid } from '../../../../components/atoms/Grid.tsx';
 import { Button } from '../../../../components/atoms/Button.tsx';
 import { CheckBox } from '../../../../components/atoms/CheckBox.tsx';
 import { useSignInPage } from './useSignInPage.ts';
+import { t } from 'i18next';
 
 export function SignInPage() {
   const page = useSignInPage();
@@ -13,25 +14,25 @@ export function SignInPage() {
     <div className={'grid lg:min-h-screen grid-cols-2'}>
       <div className={'h-full bg-primary-main'}></div>
       <div className={'w-full flex items-center flex-col py-10 justify-between'}>
-        <h1>SIGN IN PAGE</h1>
+        <h1>{t('sign_in')}</h1>
         <Card className={'min-w-sm  '}>
           <CardBody>
-            <Heading text={'Sign In'} />
+            <Heading text={t('sign_in')} />
           </CardBody>
           <Divider />
           <CardBody>
             <Grid gap={'md'}>
-              <div>HELLO WORLD</div>
-              <InputText id={'email'} type={'email'} label={'email'} placeholder={'insert email'} required />
+              <div className={'capitalize'}>{t('input_username_and_password_for_sign_in')}</div>
+              <InputText id={'email'} type={'email'} label={t('email')} placeholder={t('insert_email')} required />
               <InputText
                 id={'password'}
                 type={page.showPassword ? 'text' : 'password'}
-                label={'password'}
-                placeholder={'insert password'}
+                label={t('password')}
+                placeholder={t('insert_password')}
                 required
               />
               <CheckBox onChange={page.setShowPassword} checked={page.showPassword} label={'show password'} />
-              <Button>Sign In</Button>
+              <Button>{t('sign_in')}</Button>
             </Grid>
           </CardBody>
         </Card>

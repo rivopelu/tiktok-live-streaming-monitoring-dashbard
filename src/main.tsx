@@ -1,6 +1,8 @@
+import './styles/index.css';
+import './configs/i18n.config.ts';
+
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import './styles/index.css';
 import App from './App.tsx';
 import { StompSessionProvider } from 'react-stomp-hooks';
 import { BrowserRouter } from 'react-router-dom';
