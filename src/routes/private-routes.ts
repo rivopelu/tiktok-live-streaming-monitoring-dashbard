@@ -1,7 +1,7 @@
 import { IRouteList } from './route-list.ts';
 import { ROUTES } from './routes.ts';
 import { PAGE_TYPE_ENUM } from '../enums/page-type-enum.ts';
-import { DashboardPage } from '../pages/private/DashboardPage.tsx';
+import { DashboardPage } from '../pages/private/dashboard/DashboardPage.tsx';
 import { MonitoringPage } from '../pages/private/monitoring/MonitoringPage.tsx';
 
 export const privateRoutes: IRouteList[] = [

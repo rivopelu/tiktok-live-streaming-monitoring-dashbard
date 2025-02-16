@@ -6,7 +6,9 @@ export function HomePage() {
   return (
     <div className={'flex min-h-screen items-center justify-center'}>
       <div className={'max-w-2xl'}>
-        <h1>HOME PAGE</h1>
+        <div className="flex u">
+          <h1>HOME PAGE</h1>
+        </div>
         <Link to={ROUTES.PUBLIC.SIGN_IN()}>
           <Button>SIGN IN</Button>
         </Link>

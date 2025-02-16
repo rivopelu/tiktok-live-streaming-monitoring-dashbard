@@ -1,5 +1,7 @@
 import { BrandLogo } from '../atoms/BrandLogo';
 import { ListItem } from '../atoms/ListItem';
+import { useData } from '../../data/useData.ts';
+import { Link } from 'react-router-dom';
 
 export function Sidebar() {
   return (
@@ -10,9 +12,14 @@ export function Sidebar() {
         </div>
         <div>
           <div>
-            {Array.from({ length: 5 }).map((_, i) => (
-              <ListItem label={`ITEM SIDE ${i}`} />
-            ))}
+            {useData().listSidebar.map((item, i) => {
+              const Icon = item.icon;
+              return (
+                <Link to={item.route}>
+                  <ListItem icon={<Icon />} label={item.label} key={i} />
+                </Link>
+              );
+            })}
           </div>
         </div>
       </div>
