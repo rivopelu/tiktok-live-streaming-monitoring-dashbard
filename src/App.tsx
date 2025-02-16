@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useSubscription } from 'react-stomp-hooks';
 import { TIKTOK_EVENT_ENUM } from './enums/tiktok_event_enum';
 import { MdFavorite } from 'react-icons/md';
+import { Card, CardBody } from './components/Card';
 
 function App() {
   const [dataLike, setDataLike] = useState<IResData[]>([]);
@@ -28,7 +29,7 @@ function App() {
         setDataJoin((e) => [parseData, ...e].splice(0, 5));
         return;
       case TIKTOK_EVENT_ENUM.FOLLOW:
-        setDataJoin((e) => [parseData, ...e].splice(0, 5));
+        setDataFollow((e) => [parseData, ...e].splice(0, 5));
         return;
       default:
         return;
@@ -104,6 +105,30 @@ function App() {
             ))}
           </div>
         </div>
+        <div>
+          <h1 className="text-3xl mb-3">FOLLOW</h1>
+          <div className="grid grid-cols-5 gap-4">
+            {dataFollow.map((item, i) => (
+              <div key={i} className="px-3 py-2 rounded-full border-2 flex gap-4 justify-between">
+                <div className="flex items-center gap-3">
+                  <img className="h-13 w-13 rounded-full" alt={item.room_id} src={item.profile_picture_url} />
+                  <div>
+                    <div>@{item.tiktok_username}</div>
+                    <h1>{item.tiktok_user_profile_name}</h1>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+      <div className="mt-16">
+        <h1 className="text-2xl">LOGGER</h1>
+        <Card>
+          <CardBody>
+            <h1>HELLO</h1>
+          </CardBody>
+        </Card>
       </div>
     </div>
   );
