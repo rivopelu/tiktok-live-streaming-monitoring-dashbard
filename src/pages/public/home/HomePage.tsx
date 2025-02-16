@@ -1,4 +1,4 @@
-import { Button } from '../../../components/Button.tsx';
+import { Button } from '../../../components/atoms/Button.tsx';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '../../../routes/routes.ts';
 

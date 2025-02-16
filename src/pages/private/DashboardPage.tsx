@@ -1,7 +1,7 @@
 import { useSubscription } from 'react-stomp-hooks';
 import { useState } from 'react';
 import { TIKTOK_EVENT_ENUM } from '../../enums/tiktok_event_enum.ts';
-import { Card, CardBody } from '../../components/Card.tsx';
+import { Card, CardBody } from '../../components/atoms/Card.tsx';
 import { MdFavorite } from 'react-icons/md';
 
 export function DashboardPage() {
