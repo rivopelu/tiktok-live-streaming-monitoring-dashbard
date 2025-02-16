@@ -5,5 +5,6 @@ export const ROUTES = {
   },
   PRIVATE: {
     DASHBOARD: () => `/dashboard`,
+    MONITORING: () => `/dashboard/monitoring`,
   },
 };
