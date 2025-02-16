@@ -1,4 +1,5 @@
 import { BrandLogo } from '../atoms/BrandLogo';
+import { ListItem } from '../atoms/ListItem';
 
 export function Sidebar() {
   return (
@@ -7,8 +8,12 @@ export function Sidebar() {
         <div className="h-top-bar-height flex items-center px-4 border-b-2">
           <BrandLogo />
         </div>
-        <div className="px-4">
-          <h1>LIST</h1>
+        <div>
+          <div>
+            {Array.from({ length: 5 }).map((_, i) => (
+              <ListItem label={`ITEM SIDE ${i}`} />
+            ))}
+          </div>
         </div>
       </div>
     </div>

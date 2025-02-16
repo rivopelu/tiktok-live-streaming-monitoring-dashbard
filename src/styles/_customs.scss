@@ -1,0 +1,25 @@
+.list-item-sidebar {
+    &:hover {
+
+        .text {
+            transform: translateX(12px);
+
+        }
+
+    }
+
+    &:active {
+
+        .text {
+            transform: translateX(16px);
+
+        }
+
+    }
+
+    .text {
+        transition: ease-in-out 200ms;
+    }
+
+
+}
