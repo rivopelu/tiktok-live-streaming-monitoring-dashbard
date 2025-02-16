@@ -10,6 +10,8 @@ export function DashboardPage() {
   const [dataShare, setDataShare] = useState<IResData[]>([]);
   const [dataJoin, setDataJoin] = useState<IResData[]>([]);
   const [dataFollow, setDataFollow] = useState<IResData[]>([]);
+  const [dataGift, setDataGift] = useState<IResData[]>([]);
+  const [dataGiftCombo, setDataGiftCombo] = useState<IResData[]>([]);
 
   useSubscription('/topic/event', (message) => setLastMessage(message.body));
 
@@ -30,6 +32,13 @@ export function DashboardPage() {
         return;
       case TIKTOK_EVENT_ENUM.FOLLOW:
         setDataFollow((e) => [parseData, ...e].splice(0, 5));
+        return;
+      case TIKTOK_EVENT_ENUM.GIFT:
+        setDataGift((e) => [parseData, ...e].splice(0, 5));
+        return;
+      case TIKTOK_EVENT_ENUM.GIFT_COMBO:
+        console.log(parseData);
+        setDataGiftCombo((e) => [parseData, ...e].splice(0, 5));
         return;
       default:
         return;
@@ -121,6 +130,51 @@ export function DashboardPage() {
             ))}
           </div>
         </div>
+        <div>
+          <h1 className="text-3xl mb-3">GIFT</h1>
+          <div className="grid grid-cols-5 gap-4">
+            {dataGift.map((item, i) => (
+              <div key={i} className="px-3 py-2 rounded-full border-2 flex gap-4 justify-between">
+                <div className="flex items-center gap-3">
+                  <img className="h-13 w-13 rounded-full" alt={item.room_id} src={item.profile_picture_url} />
+                  <div>
+                    <div>@{item.tiktok_username}</div>
+                    <h1>{item.tiktok_user_profile_name}</h1>
+                  </div>
+                </div>
+                {item.gift_data && (
+                  <div className="flex">
+                    <div>{item.gift_data?.name}</div>
+                    <img className="h-10 w-10" alt={item.gift_data.name} src={item.gift_data.picture_url} />
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+        <div>
+          <h1 className="text-3xl mb-3">GIFT COMBO</h1>
+          <div className="grid grid-cols-5 gap-4">
+            {dataGiftCombo.map((item, i) => (
+              <div key={i} className="px-3 py-2 rounded-full border-2 flex gap-4 justify-between">
+                <div className="flex items-center gap-3">
+                  <img className="h-13 w-13 rounded-full" alt={item.room_id} src={item.profile_picture_url} />
+                  <div>
+                    <div>@{item.tiktok_username}</div>
+                    <h1>{item.tiktok_user_profile_name}</h1>
+                  </div>
+                </div>
+                {item.gift_data && (
+                  <div className="flex">
+                    <div>{item.gift_data?.name}</div>
+                    <img className="h-10 w-10" alt={item.gift_data.name} src={item.gift_data.picture_url} />
+                    <div className="text-2xl">{item.gift_data.combo}</div>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
       <div className="mt-16">
         <h1 className="text-2xl">LOGGER</h1>
@@ -143,4 +197,11 @@ interface IResData {
   tiktok_profile_name: string;
   comment: string;
   like_count: number;
+  gift_data?: {
+    gift_id: number;
+    name: string;
+    diamond_cost: number;
+    picture_url: string;
+    combo: number;
+  };
 }

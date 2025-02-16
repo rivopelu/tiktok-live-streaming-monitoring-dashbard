@@ -14,7 +14,7 @@ createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <Provider store={store}>
       <BrowserRouter>
-        <StompSessionProvider url={ENV.BASE_URL} reconnectDelay={2000}>
+        <StompSessionProvider url={ENV.BASE_URL + '/ws'} reconnectDelay={2000}>
           <App />
         </StompSessionProvider>
       </BrowserRouter>

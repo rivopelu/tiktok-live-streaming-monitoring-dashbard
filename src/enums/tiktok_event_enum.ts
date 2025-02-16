@@ -4,4 +4,6 @@ export enum TIKTOK_EVENT_ENUM {
   SHARE = 'SHARE',
   JOIN = 'JOIN',
   FOLLOW = 'FOLLOW',
+  GIFT = 'GIFT',
+  GIFT_COMBO = 'GIFT_COMBO',
 }
