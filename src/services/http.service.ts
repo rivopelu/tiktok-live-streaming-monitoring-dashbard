@@ -1,9 +1,10 @@
 import axios, { AxiosRequestConfig } from 'axios';
 import { ENV } from '../constants/env.ts';
+import { LOCAL_STORAGE_KEY } from '../constants/local_storage_key.ts';
 
 export class HttpService {
   private baseUrl = ENV.BASE_URL;
-  private token: string | null = localStorage.getItem('token');
+  private token: string | null = localStorage.getItem(LOCAL_STORAGE_KEY.ACCESS_TOKEN);
 
   private HeaderSetting(): AxiosRequestConfig {
     return {

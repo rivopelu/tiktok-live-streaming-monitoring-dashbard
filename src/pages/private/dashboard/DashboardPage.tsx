@@ -16,11 +16,9 @@ export function DashboardPage() {
           </div>
         </div>
         <div>
-          {Array.from({ length: 200 }).map((_, i) => (
-            <div key={i}>
-              <h1>HELLO WORLD {i}</h1>
-            </div>
-          ))}
+          <Button loading={page.loading} onClick={page.onStartStreaming}>
+            {t('start_live_streaming')}
+          </Button>
         </div>
       </div>
     </PageContainer>

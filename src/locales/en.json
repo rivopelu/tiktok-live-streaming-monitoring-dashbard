@@ -27,7 +27,8 @@
   "sign_in_here": "sign in here",
   "dont_have_account": "dont have account ?",
   "sign_up_here": " sign up here",
-  "input_username_and_password_for_sign_in" : "input username and password for sign in",
-  "logout" : "logout",
-  "dashboard" : "dasboard"
+  "input_username_and_password_for_sign_in": "input username and password for sign in",
+  "logout": "logout",
+  "dashboard": "dasboard",
+  "start_live_streaming": "start live streaming"
 }

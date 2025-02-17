@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useSubscription } from 'react-stomp-hooks';
 import { Card, CardBody } from '../../../components/atoms/Card';
 import { TIKTOK_EVENT_ENUM } from '../../../enums/tiktok_event_enum';
@@ -12,11 +12,14 @@ export function MonitoringPage() {
   const [dataFollow, setDataFollow] = useState<IResDataMessageTiktokEvent[]>([]);
   const [dataGift, setDataGift] = useState<IResDataMessageTiktokEvent[]>([]);
   const [dataGiftCombo, setDataGiftCombo] = useState<IResDataMessageTiktokEvent[]>([]);
+  const [dataLogger, setDataLogger] = useState<IResDataMessageTiktokEvent[]>([]);
 
   useSubscription('/topic/event', (message) => setLastMessage(message.body));
 
   function setLastMessage(res: string) {
     const parseData: IResDataMessageTiktokEvent = JSON.parse(res);
+    setDataLogger((e) => [parseData, ...e].splice(0, 5));
+
     switch (parseData.type) {
       case TIKTOK_EVENT_ENUM.COMMENT:
         setDataComment((e) => [parseData, ...e].splice(0, 5));
@@ -177,11 +180,25 @@ export function MonitoringPage() {
       </div>
       <div className="mt-16">
         <h1 className="text-2xl">LOGGER</h1>
-        <Card>
-          <CardBody>
-            <h1>HELLO</h1>
-          </CardBody>
-        </Card>
+        <div className={' h-[400px] flex flex-col gap-3 overflow-hidden'}>
+          {dataLogger.map((item, i) => (
+            <Card key={i}>
+              <CardBody>
+                <div className={'w-full grid grid-cols-3'}>
+                  <h1>{item.type}</h1>
+                  <div className="flex items-center gap-3">
+                    <img className="h-13 w-13 rounded-full" alt={item.room_id} src={item.profile_picture_url} />
+                    <div>
+                      <div>@{item.tiktok_username}</div>
+                      <h1>{item.tiktok_user_profile_name}</h1>
+                    </div>
+                  </div>
+                  <div>{new Date().toDateString()}</div>
+                </div>
+              </CardBody>
+            </Card>
+          ))}
+        </div>
       </div>
     </div>
   );
