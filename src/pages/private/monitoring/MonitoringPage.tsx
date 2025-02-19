@@ -1,8 +1,9 @@
-import { useState } from 'react';
-import { useSubscription } from 'react-stomp-hooks';
+import { useEffect, useState } from 'react';
 import { Card, CardBody } from '../../../components/atoms/Card';
 import { TIKTOK_EVENT_ENUM } from '../../../enums/tiktok_event_enum';
 import { IResDataMessageTiktokEvent } from '../../../models/response/IResDataMessageTiktokEvent';
+import { IStreamingSlice } from '../../../redux/reducers/streaming-slice';
+import { useAppSelector } from '../../../redux/store';
 
 export function MonitoringPage() {
   const [dataLike, setDataLike] = useState<IResDataMessageTiktokEvent[]>([]);
@@ -14,10 +15,15 @@ export function MonitoringPage() {
   const [dataGiftCombo, setDataGiftCombo] = useState<IResDataMessageTiktokEvent[]>([]);
   const [dataLogger, setDataLogger] = useState<IResDataMessageTiktokEvent[]>([]);
 
-  useSubscription('/topic/event', (message) => setLastMessage(message.body));
+  const Streaming: IStreamingSlice = useAppSelector((state) => state.Streaming);
 
-  function setLastMessage(res: string) {
-    const parseData: IResDataMessageTiktokEvent = JSON.parse(res);
+  useEffect(() => {
+    if (Streaming.messageEvent?.data) {
+      setLastMessage(Streaming.messageEvent.data);
+    }
+  }, [Streaming.messageEvent?.data]);
+
+  function setLastMessage(parseData: IResDataMessageTiktokEvent) {
     setDataLogger((e) => [parseData, ...e].splice(0, 5));
 
     switch (parseData.type) {
