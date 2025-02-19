@@ -4,6 +4,13 @@ import { TIKTOK_EVENT_ENUM } from '../../../enums/tiktok_event_enum';
 import { IResDataMessageTiktokEvent } from '../../../models/response/IResDataMessageTiktokEvent';
 import { IStreamingSlice } from '../../../redux/reducers/streaming-slice';
 import { useAppSelector } from '../../../redux/store';
+import { t } from 'i18next';
+import { Button } from '../../../components/atoms/Button.tsx';
+import { PageContainer } from '../../../components/atoms/PageContainer.tsx';
+import { ENDPOINT } from '../../../constants/endpoint.ts';
+import { useAuth } from '../../../providers/UseAuth.tsx';
+import { HttpService } from '../../../services/http.service.ts';
+import ErrorService from '../../../services/error.service.ts';
 
 export function MonitoringPage() {
   const [dataLike, setDataLike] = useState<IResDataMessageTiktokEvent[]>([]);
@@ -16,6 +23,39 @@ export function MonitoringPage() {
   const [dataLogger, setDataLogger] = useState<IResDataMessageTiktokEvent[]>([]);
 
   const Streaming: IStreamingSlice = useAppSelector((state) => state.Streaming);
+  const auth = useAuth();
+  const httpService = new HttpService();
+  const errorService = new ErrorService();
+
+  const [loading, setLoading] = useState<boolean>(false);
+
+  function onLogout() {
+    auth.logOut();
+  }
+
+  function onStartStreaming() {
+    httpService
+      .PATCH(ENDPOINT.START_STREAMING())
+      .then(() => {
+        setLoading(false);
+      })
+      .catch((e) => {
+        errorService.fetchApiError(e);
+        setLoading(false);
+      });
+  }
+
+  function onEndStreaming() {
+    httpService
+      .PATCH(ENDPOINT.END_STREAMING())
+      .then(() => {
+        setLoading(false);
+      })
+      .catch((e) => {
+        errorService.fetchApiError(e);
+        setLoading(false);
+      });
+  }
 
   useEffect(() => {
     if (Streaming.messageEvent?.data) {
@@ -56,6 +96,24 @@ export function MonitoringPage() {
 
   return (
     <div className="min-h-screen w-full p-6">
+      <PageContainer>
+        <div className="mt-8 grid gap-8">
+          <div className="flex justify-between items-center">
+            <div className="text-3xl capitalize">{t('dashboard')}</div>
+            <div>
+              <Button onClick={onLogout}>{t('logout').toUpperCase()}</Button>
+            </div>
+          </div>
+          <div>
+            <Button loading={loading} onClick={onStartStreaming}>
+              {t('start_live_streaming')}
+            </Button>
+            <Button loading={loading} onClick={onEndStreaming}>
+              {t('END STREAMING')}
+            </Button>
+          </div>
+        </div>
+      </PageContainer>
       <div className="grid gap-6 ">
         <div>
           <h1 className="text-3xl mb-3">LIKE</h1>
