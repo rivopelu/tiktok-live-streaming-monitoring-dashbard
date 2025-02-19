@@ -15,7 +15,7 @@ export function Sidebar() {
             {useData().listSidebar.map((item, i) => {
               const Icon = item.icon;
               return (
-                <Link to={item.route}>
+                <Link key={i} to={item.route}>
                   <ListItem icon={<Icon />} label={item.label} key={i} />
                 </Link>
               );

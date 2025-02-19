@@ -30,5 +30,13 @@
   "input_username_and_password_for_sign_in": "input username and password for sign in",
   "logout": "logout",
   "dashboard": "dasboard",
-  "start_live_streaming": "start live streaming"
+  "start_live_streaming": "start live streaming",
+  "dont_have_account?": "dont have account ? ",
+  "page_not_found": "page not found",
+  "back_to_home": "back to home",
+  "insert_your_information_for_sign_up": "insert your information for sign up",
+  "tiktok_username": "tiktok username",
+  "insert_your_name": "insert your name",
+  "insert_your_email_address": "insert your email address",
+  "insert_tiktok_username": "insert tiktok username"
 }

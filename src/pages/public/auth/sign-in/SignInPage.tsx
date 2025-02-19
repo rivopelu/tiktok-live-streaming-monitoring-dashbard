@@ -7,6 +7,8 @@ import { Button } from '../../../../components/atoms/Button.tsx';
 import { CheckBox } from '../../../../components/atoms/CheckBox.tsx';
 import { useSignInPage } from './useSignInPage.ts';
 import { t } from 'i18next';
+import { Link } from 'react-router-dom';
+import { ROUTES } from '../../../../routes/routes.ts';
 
 export function SignInPage() {
   const page = useSignInPage();
@@ -52,6 +54,12 @@ export function SignInPage() {
               <Button loading={page.loading} onClick={() => formik.handleSubmit()}>
                 {t('sign_in')}
               </Button>
+              <div>
+                {t('dont_have_account?')}{' '}
+                <Link className="text-blue-700 hover:underline" to={ROUTES.PUBLIC.SIGN_UP()}>
+                  {t('sign_up_here')}
+                </Link>
+              </div>
             </Grid>
           </CardBody>
         </Card>

@@ -14,7 +14,8 @@ export default class ErrorService {
 
   public fetchApiError(error: AxiosError<any>) {
     if (error?.response?.status === 401) {
-      this.authService.Logout().then();
+      alert(401);
+      // this.authService.Logout().then();
     } else {
       let message;
       if (axios.isAxiosError(error) && error.response) {

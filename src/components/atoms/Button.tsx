@@ -21,9 +21,10 @@ export function Button(props: IProps) {
     <button
       onClick={props.onClick}
       className={twMerge(
-        'bg-white border-2 w-full duration-200 py-2 px-4 cursor-pointer cursor-pointer ',
+        'bg-white border-2 w-full duration-200 py-2 px-4  cursor-pointer ',
         'hover:bg-primary-main/30  ',
         'active:bg-primary-main/20 active:translate-y-[-2px] ',
+        props.className,
         checkRounded(),
       )}
     >
@@ -37,4 +38,5 @@ interface IProps {
   rounded?: 'full' | 'small' | 'medium' | 'large';
   onClick?: MouseEventHandler<HTMLButtonElement>;
   loading?: boolean;
+  className?: string;
 }

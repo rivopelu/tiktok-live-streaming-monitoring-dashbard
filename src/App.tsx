@@ -2,6 +2,7 @@ import { Route, Routes } from 'react-router-dom';
 import { routeList } from './routes/route-list.ts';
 import { MainProviders } from './providers/MainProviders.tsx';
 import { ToastContainer } from 'react-toastify';
+import { NotFoundPage } from './pages/public/NotFountPage.tsx';
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
             />
           );
         })}
+        <Route element={<NotFoundPage />} path="*" />
       </Routes>
     </>
   );
