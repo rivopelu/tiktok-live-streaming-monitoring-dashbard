@@ -7,8 +7,11 @@ export function TopBar() {
     <div className={'fixed z-[99] border-b-2 w-screen h-top-bar-height bg-white'}>
       <div className={'w-full  pl-4 px-10 h-full flex items-center justify-between'}>
         <h1>TOP BAR</h1>
-        <div className={'flex gap-3'}>
+        <div className={'flex gap-7'}>
           <StreamingStatusText />
+          <div>
+            <div className={'h-full bg-slate-200 w-1 rounded-full '}></div>
+          </div>
           <IconButton>
             <MdPerson />
           </IconButton>

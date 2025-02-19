@@ -26,9 +26,9 @@ export function StreamingStatusText() {
   }
 
   return (
-    <div className="flex gap-4 items-center">
-      <div className={twMerge(checkColor(), 'h-5 w-5 rounded-full')}></div>
+    <div className="flex gap-2 items-center">
       <div>{statusMessage}</div>
+      <div className={twMerge(checkColor(), 'h-5 w-5 rounded-full')}></div>
     </div>
   );
 }
