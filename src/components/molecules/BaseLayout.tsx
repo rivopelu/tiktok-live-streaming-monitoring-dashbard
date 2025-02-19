@@ -6,6 +6,7 @@ import { useAuth } from '../../providers/UseAuth';
 import { StreamingAction } from '../../redux/actions/streaming-action';
 import { useAppDispatch } from '../../redux/store';
 import { Sidebar } from './Sidebar';
+import { TopBar } from './TopBar.tsx';
 
 export function BaseLayout(props: IProps) {
   const dispatch = useAppDispatch();
@@ -33,8 +34,12 @@ export function BaseLayout(props: IProps) {
       case PAGE_TYPE_ENUM.PRIMARY:
         return (
           <div className="flex">
+            <TopBar />
             <Sidebar />
-            <div className="flex-1 ">{props.children}</div>
+            <div className="flex-1 ">
+              <div className={'h-top-bar-height'}></div>
+              {props.children}
+            </div>
           </div>
         );
       default:

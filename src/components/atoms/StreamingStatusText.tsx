@@ -1,9 +1,19 @@
 import { twMerge } from 'tailwind-merge';
 import { STREAMING_STATUS_ENUM } from '../../enums/streaming-status-enum';
+import { useState } from 'react';
+import { useSubscription } from 'react-stomp-hooks';
+import { useAuth } from '../../providers/UseAuth.tsx';
 
-export function StreamingStatusText(props: IProps) {
+export function StreamingStatusText() {
+  const [statusMessage, setStatusMessage] = useState<STREAMING_STATUS_ENUM | undefined>(undefined);
+  const auth = useAuth();
+  const username = auth.user?.tiktok_username;
+  useSubscription('/topic/streaming-status/' + username, (message) =>
+    setStatusMessage(message.body as STREAMING_STATUS_ENUM),
+  );
+
   function checkColor() {
-    switch (props.status) {
+    switch (statusMessage) {
       case STREAMING_STATUS_ENUM.CONNECTED:
         return 'bg-green-600';
       case STREAMING_STATUS_ENUM.ERROR:
@@ -18,11 +28,7 @@ export function StreamingStatusText(props: IProps) {
   return (
     <div className="flex gap-4 items-center">
       <div className={twMerge(checkColor(), 'h-5 w-5 rounded-full')}></div>
-      <div>{props.status}</div>
+      <div>{statusMessage}</div>
     </div>
   );
-}
-
-interface IProps {
-  status?: STREAMING_STATUS_ENUM;
 }
