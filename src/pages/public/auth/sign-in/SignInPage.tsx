@@ -32,6 +32,7 @@ export function SignInPage() {
                 label={t('email')}
                 placeholder={t('insert_email')}
                 required
+                onEnter={() => formik.handleSubmit()}
                 name={'email'}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
@@ -40,6 +41,7 @@ export function SignInPage() {
               />
               <InputText
                 id={'password'}
+                onEnter={() => formik.handleSubmit()}
                 type={page.showPassword ? 'text' : 'password'}
                 label={t('password')}
                 placeholder={t('insert_password')}

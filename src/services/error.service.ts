@@ -1,9 +1,7 @@
-import { toast } from 'react-toastify';
 import axios, { AxiosError } from 'axios';
-import AuthServices from './auth.service.ts';
+import { toast } from 'react-toastify';
 
 export default class ErrorService {
-  private authService = new AuthServices();
   private handleSnackbar(message: string) {
     toast.error(message);
   }

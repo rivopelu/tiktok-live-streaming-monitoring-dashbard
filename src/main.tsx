@@ -1,16 +1,16 @@
+import './configs/i18n.config.ts';
 import './styles/index.css';
 import './styles/index.scss';
-import './configs/i18n.config.ts';
 
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import App from './App.tsx';
-import { StompSessionProvider } from 'react-stomp-hooks';
-import { BrowserRouter } from 'react-router-dom';
-import { ENV } from './constants/env.ts';
 import { Provider } from 'react-redux';
-import store from './redux/store.ts';
+import { BrowserRouter } from 'react-router-dom';
+import { StompSessionProvider } from 'react-stomp-hooks';
+import App from './App.tsx';
+import { ENV } from './constants/env.ts';
 import AuthProvider from './providers/AuthProviders.tsx';
+import store from './redux/store.ts';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

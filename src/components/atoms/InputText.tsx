@@ -16,6 +16,11 @@ export function InputText(props: IProps) {
           onChange={props.onChange}
           value={props.value}
           name={props.name}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' && props.onEnter) {
+              props.onEnter();
+            }
+          }}
           type={props.type}
           placeholder={props.placeholder || 'placeholder'}
           className={twMerge(
@@ -46,6 +51,7 @@ interface IProps {
   type?: HTMLInputTypeAttribute;
   startIcon?: ReactNode;
   endIcon?: ReactNode;
+  onEnter?: () => void;
   errorMessage?: any;
   helperText?: string;
   name?: string;

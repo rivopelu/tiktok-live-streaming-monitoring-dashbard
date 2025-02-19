@@ -1,9 +1,9 @@
-import { IRouteList } from './route-list.ts';
-import { ROUTES } from './routes.ts';
-import { SignInPage } from '../pages/public/auth/sign-in/SignInPage.tsx';
 import { PAGE_TYPE_ENUM } from '../enums/page-type-enum.ts';
-import { HomePage } from '../pages/public/home/HomePage.tsx';
+import { IRouteList } from '../models/data/IRouteList.ts';
+import { SignInPage } from '../pages/public/auth/sign-in/SignInPage.tsx';
 import { SignUpPage } from '../pages/public/auth/sing-up/sign-up-page.tsx';
+import { HomePage } from '../pages/public/home/HomePage.tsx';
+import { ROUTES } from './routes.ts';
 
 export const publicRoute: IRouteList[] = [
   {

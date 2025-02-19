@@ -7,10 +7,10 @@ import { HttpService } from '../../../services/http.service';
 
 export function useDashboardPage() {
   const auth = useAuth();
+  const username = auth.user?.tiktok_username;
   const httpService = new HttpService();
   const errorService = new ErrorService();
 
-  const [username] = useState<string>('siwareal2');
   const [loading, setLoading] = useState<boolean>(false);
   const [statusMessage, setStatusMessage] = useState<string>('...');
 
@@ -22,7 +22,7 @@ export function useDashboardPage() {
 
   function onStartStreaming() {
     httpService
-      .POST(ENDPOINT.START_STREAMING(), { tiktok_username: username })
+      .PATCH(ENDPOINT.START_STREAMING())
       .then(() => {
         setLoading(false);
       })
@@ -34,7 +34,7 @@ export function useDashboardPage() {
 
   function onEndStreaming() {
     httpService
-      .PUT(ENDPOINT.END_STREAMING(), { tiktok_username: username })
+      .PATCH(ENDPOINT.END_STREAMING())
       .then(() => {
         setLoading(false);
       })
