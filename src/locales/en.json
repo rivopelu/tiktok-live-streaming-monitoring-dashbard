@@ -38,5 +38,7 @@
   "tiktok_username": "tiktok username",
   "insert_your_name": "insert your name",
   "insert_your_email_address": "insert your email address",
-  "insert_tiktok_username": "insert tiktok username"
+  "insert_tiktok_username": "insert tiktok username",
+  "start_streaming": "start streaming",
+  "end_streaming": "end streaming"
 }

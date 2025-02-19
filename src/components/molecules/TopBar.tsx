@@ -1,22 +1,26 @@
+import { useEffect, useState } from 'react';
 import { MdPerson } from 'react-icons/md';
+import { typeActiveStreaming } from '../../models/response/IResModel.ts';
+import { AccountActions } from '../../redux/actions/account.actions.ts';
+import { IAccountSlice } from '../../redux/reducers/account.slice.ts';
+import { useAppDispatch, useAppSelector } from '../../redux/store.ts';
 import { IconButton } from '../atoms/IconButton.tsx';
 import { StreamingStatusText } from '../atoms/StreamingStatusText.tsx';
-import { HttpService } from '../../services/http.service.ts';
-import { useEffect, useState } from 'react';
-import { ENDPOINT } from '../../constants/endpoint.ts';
-import { BaseResponse } from '../../models/response/IResModel.ts';
-
-type typeActiveStreaming = 'ACTIVE' | 'INACTIVE' | undefined;
 
 export function TopBar() {
-  const httpService = new HttpService();
+  const dispatch = useAppDispatch();
+  const accountAction = new AccountActions();
+
+  const Account: IAccountSlice = useAppSelector((state) => state.Account);
 
   const [activeStreaming, setActiveStreaming] = useState<typeActiveStreaming>();
 
   useEffect(() => {
-    httpService.GET(ENDPOINT.CHECK_STREAMING_STATUS()).then((res: BaseResponse<boolean>) => {
-      setActiveStreaming(res.data ? 'ACTIVE' : 'INACTIVE');
-    });
+    dispatch(accountAction.checkStatusStreaming());
+  }, []);
+
+  useEffect(() => {
+    setActiveStreaming(Account?.isActiveStreaming?.data ? 'ACTIVE' : 'INACTIVE');
   }, []);
 
   return (

@@ -26,6 +26,8 @@ export default tseslint.config(
       '@typescript-eslint/no-var-requires': 'off',
       'react/react-in-jsx-scope': 'off',
       '@typescript-eslint/no-unused-vars': 'warn',
+      'react-hooks/rules-of-hooks': 'error',
+      'react-hooks/exhaustive-deps': 'off',
     },
   },
 );
