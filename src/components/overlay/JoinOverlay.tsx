@@ -2,7 +2,6 @@ import { IStreamingSlice } from '../../redux/reducers/streaming-slice.ts';
 import { useAppSelector } from '../../redux/store.ts';
 import { useEffect, useState } from 'react';
 import { IResDataMessageTiktokEvent } from '../../models/response/IResDataMessageTiktokEvent.ts';
-import { useAudio } from '../../hooks/useAudio.ts';
 import { TIKTOK_EVENT_ENUM } from '../../enums/tiktok_event_enum.ts';
 import { twMerge } from 'tailwind-merge';
 

@@ -11,17 +11,28 @@ import { Button } from '../../../components/atoms/Button.tsx';
 import { useAudio } from '../../../hooks/useAudio.ts';
 import { toast } from 'react-toastify';
 import { JoinOverlay } from '../../../components/overlay/JoinOverlay.tsx';
+import { TIKTOK_EVENT_ENUM } from '../../../enums/tiktok_event_enum.ts';
 
 export function OverlayGalleryPage() {
   const user = useAuth().user;
-  const chatUrlOverlayUrl = baseUrlClient + ROUTES.OVERLAY.CHAT(user?.id || '');
+
   const audio = useAudio();
 
-  function onClickCopyComment() {
-    audio.notif1();
-    navigator.clipboard.writeText(chatUrlOverlayUrl).then(() => {
-      toast.error('Success Copy To Clipboard');
-    });
+  function onClickCopyComment(type: TIKTOK_EVENT_ENUM) {
+    switch (type) {
+      case TIKTOK_EVENT_ENUM.COMMENT:
+        audio.notif1();
+        navigator.clipboard.writeText(baseUrlClient + ROUTES.OVERLAY.CHAT(user?.id || '')).then(() => {
+          toast.info('Success Copy To Clipboard');
+        });
+        return;
+      case TIKTOK_EVENT_ENUM.JOIN:
+        audio.notif1();
+        navigator.clipboard.writeText(baseUrlClient + ROUTES.OVERLAY.JOIN(user?.id || '')).then(() => {
+          toast.info('Success Copy To Clipboard');
+        });
+        return;
+    }
   }
 
   return (
@@ -33,11 +44,9 @@ export function OverlayGalleryPage() {
           <Card>
             <CardBody className={'flex items-center justify-between'}>
               <h3>{t('comment')}</h3>
-              {chatUrlOverlayUrl && (
-                <div>
-                  <Button onClick={onClickCopyComment}>{t('copy_url')}</Button>
-                </div>
-              )}
+              <div>
+                <Button onClick={() => onClickCopyComment(TIKTOK_EVENT_ENUM.COMMENT)}>{t('copy_url')}</Button>
+              </div>
             </CardBody>
             <Divider />
             <CardBody>
@@ -48,11 +57,9 @@ export function OverlayGalleryPage() {
           <Card>
             <CardBody className={'flex items-center justify-between'}>
               <h3>{t('comment')}</h3>
-              {chatUrlOverlayUrl && (
-                <div>
-                  <Button onClick={onClickCopyComment}>{t('copy_url')}</Button>
-                </div>
-              )}
+              <div>
+                <Button onClick={() => onClickCopyComment(TIKTOK_EVENT_ENUM.JOIN)}>{t('copy_url')}</Button>
+              </div>
             </CardBody>
             <Divider />
             <CardBody>

@@ -11,5 +11,6 @@ export const ROUTES = {
   },
   OVERLAY: {
     CHAT: (accountId: string) => `/overlay/chat/${accountId}`,
+    JOIN: (accountId: string) => `/overlay/join/${accountId}`,
   },
 };
