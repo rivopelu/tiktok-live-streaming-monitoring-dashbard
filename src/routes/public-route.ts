@@ -4,8 +4,10 @@ import { SignInPage } from '../pages/public/auth/sign-in/SignInPage.tsx';
 import { SignUpPage } from '../pages/public/auth/sing-up/sign-up-page.tsx';
 import { HomePage } from '../pages/public/home/HomePage.tsx';
 import { ROUTES } from './routes.ts';
+import { overlayRoutes } from './overlayRoutes.ts';
 
 export const publicRoute: IRouteList[] = [
+  ...overlayRoutes,
   {
     route: ROUTES.PUBLIC.SIGN_IN(),
     elements: SignInPage,

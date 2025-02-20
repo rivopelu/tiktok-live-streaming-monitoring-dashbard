@@ -7,24 +7,31 @@ import { StreamingAction } from '../../redux/actions/streaming-action';
 import { useAppDispatch } from '../../redux/store';
 import { Sidebar } from './Sidebar';
 import { TopBar } from './TopBar.tsx';
+import { useParams } from 'react-router-dom';
 
 export function BaseLayout(props: IProps) {
   const dispatch = useAppDispatch();
   const auth = useAuth();
   const user = auth.user;
-
   const streamingAction = new StreamingAction();
-
+  const param = useParams();
   useEffect(() => {
-    console.log(user);
-  }, [user]);
+    console.log(param);
+  }, [param]);
 
-  useSubscription('/topic/event/' + user?.id + '/', (message) => getMessage(message.body));
+  function checkAccountId() {
+    if (user?.id) {
+      return user?.id;
+    } else if (param.accountId) {
+      return param.accountId;
+    }
+  }
+
+  useSubscription('/topic/event/' + checkAccountId() + '/', (message) => getMessage(message.body));
 
   function getMessage(res: string) {
     const data: IResDataMessageTiktokEvent = JSON.parse(res);
-    console.log(data);
-    dispatch(streamingAction.messageEvent(data));
+    dispatch(streamingAction.messageEvent(data)).then();
   }
 
   function checkPage() {

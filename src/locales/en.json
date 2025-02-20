@@ -40,5 +40,7 @@
   "insert_your_email_address": "insert your email address",
   "insert_tiktok_username": "insert tiktok username",
   "start_streaming": "start streaming",
-  "end_streaming": "end streaming"
+  "end_streaming": "end streaming",
+  "overlay_gallery": "overlay gallery",
+  "copy_url" : "copy url"
 }

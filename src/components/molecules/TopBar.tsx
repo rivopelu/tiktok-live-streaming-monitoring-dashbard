@@ -6,6 +6,7 @@ import { IAccountSlice } from '../../redux/reducers/account.slice.ts';
 import { useAppDispatch, useAppSelector } from '../../redux/store.ts';
 import { IconButton } from '../atoms/IconButton.tsx';
 import { StreamingStatusText } from '../atoms/StreamingStatusText.tsx';
+import { Dropdown } from '../atoms/Dropdown.tsx';
 
 export function TopBar() {
   const dispatch = useAppDispatch();
@@ -36,9 +37,15 @@ export function TopBar() {
               </div>
             </>
           )}
-          <IconButton>
-            <MdPerson />
-          </IconButton>
+          <Dropdown
+            toggle={
+              <IconButton>
+                <MdPerson />
+              </IconButton>
+            }
+          >
+            <h1>HELLO</h1>
+          </Dropdown>
         </div>
       </div>
     </div>

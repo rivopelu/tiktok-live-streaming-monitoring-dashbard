@@ -1,6 +1,6 @@
 import { BrandLogo } from '../atoms/BrandLogo';
 import { ListItem } from '../atoms/ListItem';
-import { useData } from '../../data/useData.ts';
+import { useData } from '../../hooks/useData.ts';
 import { Link } from 'react-router-dom';
 
 export function Sidebar() {
