@@ -8,7 +8,7 @@ export default class AuthServices {
 
   public async Logout() {
     localStorage.clear();
-    window.location.replace(ROUTES.PUBLIC.SIGN_IN());
+    window.location.replace(ROUTES.PUBLIC.HOME());
   }
 
   public authCheck(): boolean {

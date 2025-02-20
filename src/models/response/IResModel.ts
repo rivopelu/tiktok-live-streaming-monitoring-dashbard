@@ -3,6 +3,7 @@ import { AxiosResponse } from 'axios';
 
 export type BasePayload<T> = PayloadAction<IBasePayload<T>>;
 export type BasePayloadPaginated<T> = PayloadAction<IBasePayloadPaginated<T>>;
+export type typeActiveStreaming = 'ACTIVE' | 'INACTIVE' | undefined;
 
 interface IBasePayload<T> {
   data?: T;

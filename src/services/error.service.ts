@@ -1,7 +1,9 @@
 import axios, { AxiosError } from 'axios';
 import { toast } from 'react-toastify';
+import AuthServices from './auth.service';
 
 export default class ErrorService {
+  authService = new AuthServices();
   private handleSnackbar(message: string) {
     toast.error(message);
   }
@@ -12,8 +14,7 @@ export default class ErrorService {
 
   public fetchApiError(error: AxiosError<any>) {
     if (error?.response?.status === 401) {
-      alert(401);
-      // this.authService.Logout().then();
+      this.authService.Logout().then();
     } else {
       let message;
       if (axios.isAxiosError(error) && error.response) {
