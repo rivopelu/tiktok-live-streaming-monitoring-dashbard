@@ -10,6 +10,7 @@ import { baseUrlClient } from '../../../hooks/useData.ts';
 import { Button } from '../../../components/atoms/Button.tsx';
 import { useAudio } from '../../../hooks/useAudio.ts';
 import { toast } from 'react-toastify';
+import { JoinOverlay } from '../../../components/overlay/JoinOverlay.tsx';
 
 export function OverlayGalleryPage() {
   const user = useAuth().user;
@@ -41,6 +42,21 @@ export function OverlayGalleryPage() {
             <Divider />
             <CardBody>
               <ChatOverlay allignment={'right'} />
+            </CardBody>
+          </Card>
+
+          <Card>
+            <CardBody className={'flex items-center justify-between'}>
+              <h3>{t('comment')}</h3>
+              {chatUrlOverlayUrl && (
+                <div>
+                  <Button onClick={onClickCopyComment}>{t('copy_url')}</Button>
+                </div>
+              )}
+            </CardBody>
+            <Divider />
+            <CardBody>
+              <JoinOverlay allignment={'left'} />
             </CardBody>
           </Card>
         </div>
