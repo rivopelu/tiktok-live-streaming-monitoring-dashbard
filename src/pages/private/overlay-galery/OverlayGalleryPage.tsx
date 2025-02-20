@@ -9,6 +9,7 @@ import { ROUTES } from '../../../routes/routes.ts';
 import { baseUrlClient } from '../../../hooks/useData.ts';
 import { Button } from '../../../components/atoms/Button.tsx';
 import { useAudio } from '../../../hooks/useAudio.ts';
+import { toast } from 'react-toastify';
 
 export function OverlayGalleryPage() {
   const user = useAuth().user;
@@ -17,6 +18,9 @@ export function OverlayGalleryPage() {
 
   function onClickCopyComment() {
     audio.notif1();
+    navigator.clipboard.writeText(chatUrlOverlayUrl).then(() => {
+      toast.error('Success Copy To Clipboard');
+    });
   }
 
   return (
