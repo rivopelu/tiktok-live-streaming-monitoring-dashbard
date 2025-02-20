@@ -1,5 +1,5 @@
 import { JoinOverlay } from '../../components/overlay/JoinOverlay.tsx';
 
 export function JoinOverlayPage() {
-  return <JoinOverlay />;
+  return <JoinOverlay allignment={'left'} />;
 }
