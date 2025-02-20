@@ -29,6 +29,8 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
         const resToken = res.data.response_data.access_token;
         const userData = res.data.response_data.account_data;
         setToken(resToken);
+        setUser(userData);
+
         localStorage.setItem(LOCAL_STORAGE_KEY.ACCESS_TOKEN, resToken);
         localStorage.setItem(LOCAL_STORAGE_KEY.USER, JSON.stringify(userData));
         navigate(ROUTES.PRIVATE.DASHBOARD());
