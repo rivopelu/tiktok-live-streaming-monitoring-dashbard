@@ -1,5 +1,4 @@
-import { ReactNode, useState, useRef, useEffect } from 'react';
-import { Card, CardBody } from './Card';
+import { ReactNode, useEffect, useRef, useState } from 'react';
 
 export function Dropdown({ toggle, children }: IProps) {
   const [isOpen, setIsOpen] = useState(false);
@@ -30,13 +29,7 @@ export function Dropdown({ toggle, children }: IProps) {
         <div onClick={() => setIsOpen(!isOpen)} className="cursor-pointer">
           {toggle}
         </div>
-        {isOpen && (
-          <div className="absolute right-0 mt-2 bg-white shadow-lg rounded-md">
-            <Card>
-              <CardBody>{children}</CardBody>
-            </Card>
-          </div>
-        )}
+        {isOpen && <div className="absolute right-0 mt-2  rounded-md">{children}</div>}
       </div>
     </>
   );

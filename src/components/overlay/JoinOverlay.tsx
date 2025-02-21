@@ -30,7 +30,11 @@ export function JoinOverlay(props: IProps) {
       <div className={twMerge('flex flex-col  gap-3  justify-center ', checkAllignment())}>
         {dataComment.map((item, i) => (
           <div key={i} className="px-3 py-2 rounded-full bg-white w-fit border-2 flex gap-4 ">
-            <img className="h-13 border-2 w-13 rounded-full" alt={item.room_id} src={item.profile_picture_url} />
+            <img
+              className="h-13 border-2 w-13 bg-white rounded-full"
+              alt={item.room_id}
+              src={item.profile_picture_url}
+            />
             <div>
               <h1 className={'font-bold'}>Welcome</h1>
               <div className="font-semibold">@{item.tiktok_username}</div>

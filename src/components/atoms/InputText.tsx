@@ -24,7 +24,7 @@ export function InputText(props: IProps) {
           type={props.type}
           placeholder={props.placeholder || 'placeholder'}
           className={twMerge(
-            'py-2 px-3 w-full duration-300 bg-white outline-2 rounded-md',
+            'py-2 px-3 w-full duration-300 bg-white outline-2 outline-slate-300 rounded-md',
             'focus:outline-black/50 focus:bg-primary-main/5',
             props.startIcon ? 'pl-9' : '',
             props.endIcon ? 'pr-9' : '',
