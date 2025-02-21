@@ -3,6 +3,7 @@ import { ChatOverlayPage } from '../pages/overlay/ChatOverlayPage.tsx';
 import { PAGE_TYPE_ENUM } from '../enums/page-type-enum.ts';
 import { JoinOverlayPage } from '../pages/overlay/JoinOverlayPage.tsx';
 import { FollowOverlayPage } from '../pages/overlay/FollowOverlayPage.tsx';
+import { ViewerInfoOverlay } from '../components/overlay/ViewerInfoOverlay.tsx';
 
 export const overlayRoutes = [
   {
@@ -18,6 +19,11 @@ export const overlayRoutes = [
   {
     route: ROUTES.OVERLAY.FOLLOW(':accountId'),
     elements: FollowOverlayPage,
+    type: PAGE_TYPE_ENUM.FULL_PAGE,
+  },
+  {
+    route: ROUTES.OVERLAY.VIEWER_INFO(':accountId'),
+    elements: ViewerInfoOverlay,
     type: PAGE_TYPE_ENUM.FULL_PAGE,
   },
 ];

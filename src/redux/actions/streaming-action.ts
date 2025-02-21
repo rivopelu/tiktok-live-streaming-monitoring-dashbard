@@ -11,4 +11,10 @@ export class StreamingAction extends BaseActions {
       dispatch(this.action.setDataEvent({ data: data }));
     };
   }
+
+  viewerInfo(data: number) {
+    return async (dispatch: Dispatch) => {
+      dispatch(this.action.setViewerCount(data));
+    };
+  }
 }

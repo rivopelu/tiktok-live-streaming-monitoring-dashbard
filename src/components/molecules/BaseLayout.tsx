@@ -28,6 +28,10 @@ export function BaseLayout(props: IProps) {
   }
 
   useSubscription('/topic/event/' + checkAccountId() + '/', (message) => getMessage(message.body));
+  useSubscription('/topic/viewer-info/' + checkAccountId(), (message) => {
+    console.log(message.body);
+    dispatch(streamingAction.viewerInfo(parseInt(message.body))).then();
+  });
 
   function getMessage(res: string) {
     const data: IResDataMessageTiktokEvent = JSON.parse(res);

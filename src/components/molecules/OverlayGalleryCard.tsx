@@ -13,6 +13,7 @@ import { baseUrlClient } from '../../hooks/useData.ts';
 import { ROUTES } from '../../routes/routes.ts';
 import { JoinOverlay } from '../overlay/JoinOverlay.tsx';
 import { FollowOverlay } from '../overlay/FollowOverlay.tsx';
+import { ViewerInfoOverlay } from '../overlay/ViewerInfoOverlay.tsx';
 
 export function OverlayGalleryCard(props: IProps) {
   const user = useAuth().user;
@@ -39,6 +40,8 @@ export function OverlayGalleryCard(props: IProps) {
         return ROUTES.OVERLAY.CHAT(user?.id || '');
       case TIKTOK_EVENT_ENUM.FOLLOW:
         return ROUTES.OVERLAY.FOLLOW(user?.id || '');
+      case TIKTOK_EVENT_ENUM.VIEWER_INFO:
+        return ROUTES.OVERLAY.VIEWER_INFO(user?.id || '');
     }
   }
 
@@ -58,6 +61,8 @@ export function OverlayGalleryCard(props: IProps) {
         return t('join');
       case TIKTOK_EVENT_ENUM.FOLLOW:
         return t('follow');
+      case TIKTOK_EVENT_ENUM.VIEWER_INFO:
+        return t('viewer_info');
     }
   }
 
@@ -69,6 +74,8 @@ export function OverlayGalleryCard(props: IProps) {
         return <JoinOverlay allignment={'left'} />;
       case TIKTOK_EVENT_ENUM.FOLLOW:
         return <FollowOverlay />;
+      case TIKTOK_EVENT_ENUM.VIEWER_INFO:
+        return <ViewerInfoOverlay />;
     }
   }
 
