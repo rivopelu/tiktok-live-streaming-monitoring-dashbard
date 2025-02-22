@@ -7,6 +7,9 @@ import { useAppDispatch, useAppSelector } from '../../../redux/store';
 import ErrorService from '../../../services/error.service';
 import { HttpService } from '../../../services/http.service';
 import { AccountActions } from '../../../redux/actions/account.actions';
+import { AnalyticsActions } from '../../../redux/actions/analytics.actions.ts';
+import { IAnalyticsSlice } from '../../../redux/reducers/analytics.slice.ts';
+import { IResOverviewAnalytics } from '../../../models/response/IResOverviewAnalytics.ts';
 
 export function useDashboardPage() {
   const auth = useAuth();
@@ -15,11 +18,13 @@ export function useDashboardPage() {
   const errorService = new ErrorService();
   const dispatch = useAppDispatch();
   const accountActions = new AccountActions();
-
+  const analyticsActions = new AnalyticsActions();
   const Account: IAccountSlice = useAppSelector((state) => state.Account);
-
+  const Analytics: IAnalyticsSlice = useAppSelector((state) => state.Analytics);
+  const loadingOverview = Analytics?.overview?.loading;
   const [streamingStatus, setStreamingstatus] = useState<typeActiveStreaming>();
   const [loading, setLoading] = useState<boolean>(false);
+  const [dataOverview, setDataOverview] = useState<IResOverviewAnalytics | undefined>();
 
   useEffect(() => {
     if (Account?.isActiveStreaming?.data != undefined) {
@@ -28,28 +33,22 @@ export function useDashboardPage() {
   }, [Account?.isActiveStreaming]);
 
   useEffect(() => {
-    dispatch(accountActions.checkStatusStreaming());
+    dispatch(accountActions.checkStatusStreaming()).then();
+    dispatch(analyticsActions.getOverview()).then();
   }, []);
 
-  const [chartSeries, setChartSeries] = useState([
+  useEffect(() => {
+    if (Analytics?.overview?.data) {
+      setDataOverview(Analytics.overview.data);
+    }
+  }, [Analytics.overview?.data]);
+
+  const [chartSeries] = useState([
     {
       name: 'series-1',
       data: Array.from({ length: 13 }, () => Math.floor(Math.random() * 100)),
     },
   ]);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setChartSeries([
-        {
-          name: 'series-1',
-          data: Array.from({ length: 13 }, () => Math.floor(Math.random() * 100)),
-        },
-      ]);
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, []);
 
   const chartOption = {
     chart: {
@@ -87,5 +86,15 @@ export function useDashboardPage() {
       });
   }
 
-  return { chartOption, chartSeries, user, streamingStatus, onEndStreaming, onStartStreaming, loading };
+  return {
+    chartOption,
+    chartSeries,
+    user,
+    streamingStatus,
+    onEndStreaming,
+    onStartStreaming,
+    loading,
+    dataOverview,
+    loadingOverview,
+  };
 }

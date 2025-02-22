@@ -3,7 +3,7 @@ import { useSubscription } from 'react-stomp-hooks';
 import { PAGE_TYPE_ENUM } from '../../enums/page-type-enum';
 import { IResDataMessageTiktokEvent } from '../../models/response/IResDataMessageTiktokEvent';
 import { useAuth } from '../../providers/UseAuth';
-import { StreamingAction } from '../../redux/actions/streaming-action';
+import { StreamingAction } from '../../redux/actions/streaming.action.ts';
 import { useAppDispatch } from '../../redux/store';
 import { Sidebar } from './Sidebar';
 import { TopBar } from './TopBar.tsx';

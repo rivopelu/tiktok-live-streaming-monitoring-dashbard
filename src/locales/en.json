@@ -48,5 +48,10 @@
   "share" : "share",
   "viewer_info" : "viewer info",
   "live_monitoring" : "Live monitoring",
-  "gift" : "gift"
+  "gift" : "gift",
+  "total_viewer"  : "total viewer",
+  "total_like" : "total like",
+  "total_gift_diamond"  : "total gift diamond",
+  "total_room" : "total room",
+  "total_comment" : "total comment"
 }

@@ -7,4 +7,5 @@ export const ENDPOINT = {
   CHECK_STREAMING_STATUS: () => `/account/v1/check-streaming-status`,
   SIGN_UP: () => `/auth/v1/sign-up`,
   TEST_OVERLAY: (type: TIKTOK_EVENT_ENUM) => `/streaming/v1/test-overlay/${type}`,
+  OVERVIEW_ANALYTICS: () => `/analytics/v1/overview`,
 };
