@@ -54,5 +54,6 @@
   "total_gift_diamond"  : "total gift diamond",
   "total_room" : "total room",
   "total_comment" : "total comment",
-  "live_history" : "live history"
+  "live_history" : "live history",
+  "host_name" : "host name"
 }
