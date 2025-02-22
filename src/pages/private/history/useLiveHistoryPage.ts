@@ -9,7 +9,7 @@ export function useLiveHistoryPage() {
   const Streaming: IStreamingSlice = useAppSelector((state) => state.Streaming);
 
   const streamingAction = new StreamingAction();
-
+  const loadingList = Streaming?.listStreamingRoom?.loading;
   const [dataList, setDataList] = useState<IResListStreamingRoom[]>([]);
 
   useEffect(() => {
@@ -20,5 +20,5 @@ export function useLiveHistoryPage() {
     dispatch(streamingAction.getListStreamingRoom()).then();
   }, []);
 
-  return { dataList };
+  return { dataList, loadingList };
 }

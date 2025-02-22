@@ -55,5 +55,6 @@
   "total_room" : "total room",
   "total_comment" : "total comment",
   "live_history" : "live history",
-  "host_name" : "host name"
+  "host_name" : "host name",
+  "start_time" : "start time"
 }

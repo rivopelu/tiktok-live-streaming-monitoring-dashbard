@@ -52,7 +52,7 @@ export function LiveHistoryPage() {
       <div className={'grid gap-5 mt-8'}>
         <Heading text={t('live_history')} />
         <div>
-          <Table data={page.dataList} columns={column} />
+          <Table loading={page.loadingList} data={page.dataList} columns={column} />
         </div>
       </div>
     </PageContainer>

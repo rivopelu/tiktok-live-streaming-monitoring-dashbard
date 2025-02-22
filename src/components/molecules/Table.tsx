@@ -1,7 +1,28 @@
 import { ReactNode } from 'react';
 import { twMerge } from 'tailwind-merge';
+import { Skeleton } from '../atoms/Skeleton.tsx';
 
 export function Table(props: IProps) {
+  function tableRow(i: number, item: any, loading?: boolean) {
+    return (
+      <>
+        {props.columns.map((column, idx) => (
+          <td
+            className={twMerge(
+              'text-start  bg-white py-5 ',
+              `${i !== props.data.length - 1 ? 'border-b' : ' '}`,
+              `${idx == 0 ? 'px-4' : ' '}`,
+              `${i % 2 === 0 ? 'bg-primary-main/5' : 'bg-white'}`,
+            )}
+            key={idx}
+          >
+            {loading ? <Skeleton className={'h-4'} /> : column.content && column.content(item)}
+          </td>
+        ))}
+      </>
+    );
+  }
+
   return (
     <div className={'border rounded-md overflow-hidden'}>
       <table className="table-auto  w-full bg-white ">
@@ -15,23 +36,9 @@ export function Table(props: IProps) {
           </tr>
         </thead>
         <tbody>
-          {props.data.map((item: any, i) => (
-            <tr key={i}>
-              {props.columns.map((column, idx) => (
-                <td
-                  className={twMerge(
-                    'text-start  bg-white py-5 ',
-                    `${i !== props.data.length - 1 ? 'border-b' : ' '}`,
-                    `${idx == 0 ? 'px-4' : ' '}`,
-                    `${i % 2 === 0 ? 'bg-primary-main/5' : 'bg-white'}`,
-                  )}
-                  key={idx}
-                >
-                  {column.content && column.content(item)}
-                </td>
-              ))}
-            </tr>
-          ))}
+          {props.loading
+            ? Array.from({ length: 10 }).map((item, i) => <tr key={i}>{tableRow(i, item, true)}</tr>)
+            : props.data.map((item: any, i) => <tr key={i}>{tableRow(i, item)}</tr>)}
         </tbody>
       </table>
     </div>
@@ -46,4 +53,5 @@ export interface ITableColumns<T> {
 interface IProps {
   columns: ITableColumns<any>[];
   data: any[];
+  loading?: boolean;
 }
