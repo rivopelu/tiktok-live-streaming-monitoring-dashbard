@@ -6,6 +6,7 @@ import { OverlayGalleryPage } from '../pages/private/overlay-galery/OverlayGalle
 import { IRouteList } from '../models/data/IRouteList.ts';
 import { overlayRoutes } from './overlayRoutes.ts';
 import { HomePage } from '../pages/public/home/HomePage.tsx';
+import { LiveHistoryPage } from '../pages/private/history/LiveHistoryPage.tsx';
 
 export const privateRoutes: IRouteList[] = [
   ...overlayRoutes,
@@ -29,5 +30,10 @@ export const privateRoutes: IRouteList[] = [
     route: ROUTES.PUBLIC.HOME(),
     elements: HomePage,
     type: PAGE_TYPE_ENUM.FULL_PAGE,
+  },
+  {
+    route: ROUTES.PRIVATE.HISTORY(),
+    elements: LiveHistoryPage,
+    type: PAGE_TYPE_ENUM.PRIMARY,
   },
 ];

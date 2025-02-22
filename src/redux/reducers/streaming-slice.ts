@@ -1,9 +1,16 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { IResDataMessageTiktokEvent } from '../../models/response/IResDataMessageTiktokEvent';
-import { BasePayload, IPayloadData } from '../../models/response/IResModel';
+import {
+  BasePayload,
+  BasePayloadPaginated,
+  IPayloadData,
+  IPayloadDataPaginated,
+} from '../../models/response/IResModel';
+import { IResListStreamingRoom } from '../../models/response/IResListStreamingRoom.ts';
 
 export interface IStreamingSlice {
   messageEvent?: IPayloadData<IResDataMessageTiktokEvent>;
+  listStreamingRoom?: IPayloadDataPaginated<IResListStreamingRoom[]>;
   viewerCount?: number;
 }
 
@@ -18,6 +25,9 @@ export const StreamingSlice = createSlice({
     },
     setViewerCount: (state: IStreamingSlice, action: PayloadAction<number>) => {
       state.viewerCount = action.payload;
+    },
+    setListStreamingRoom: (state: IStreamingSlice, action: BasePayloadPaginated<IResListStreamingRoom[]>) => {
+      state.listStreamingRoom = action.payload;
     },
   },
 });

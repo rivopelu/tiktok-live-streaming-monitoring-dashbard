@@ -8,4 +8,5 @@ export const ENDPOINT = {
   SIGN_UP: () => `/auth/v1/sign-up`,
   TEST_OVERLAY: (type: TIKTOK_EVENT_ENUM) => `/streaming/v1/test-overlay/${type}`,
   OVERVIEW_ANALYTICS: () => `/analytics/v1/overview`,
+  GET_STREAMING_ROOM: () => `/streaming/v1/room/list`,
 };

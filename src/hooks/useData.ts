@@ -1,5 +1,5 @@
 import { IListSidebar } from '../models/data/IListSidebar.ts';
-import { MdDashboard, MdLogout, MdMonitor, MdOutlineVideoLibrary, MdPerson } from 'react-icons/md';
+import { MdDashboard, MdHistory, MdLogout, MdMonitor, MdOutlineVideoLibrary, MdPerson } from 'react-icons/md';
 import { ROUTES } from '../routes/routes.ts';
 import { t } from 'i18next';
 import { useAuth } from '../providers/UseAuth.tsx';
@@ -22,6 +22,11 @@ export function useData() {
       label: t('overlay_gallery'),
       icon: MdOutlineVideoLibrary,
       route: ROUTES.PRIVATE.OVERLAY_GALLERY(),
+    },
+    {
+      label: t('history'),
+      icon: MdHistory,
+      route: ROUTES.PRIVATE.HISTORY(),
     },
   ];
 
