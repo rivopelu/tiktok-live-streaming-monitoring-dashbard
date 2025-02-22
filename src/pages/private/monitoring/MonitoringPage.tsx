@@ -132,7 +132,9 @@ export function MonitoringPage() {
                       </div>
                     </div>
                     <div className={'flex  items-center gap-1'}>
-                      {item.gift_data?.picture_url && <img src={item.gift_data?.picture_url} alt={'gift'} />}
+                      {item.gift_data?.picture_url && (
+                        <img className={'h-8 w-8'} src={item.gift_data?.picture_url} alt={'gift'} />
+                      )}
                       <div>{item.gift_data?.combo}</div>
                     </div>
                   </div>
