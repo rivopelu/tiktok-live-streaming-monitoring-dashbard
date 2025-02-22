@@ -14,6 +14,7 @@ import { ROUTES } from '../../routes/routes.ts';
 import { JoinOverlay } from '../overlay/JoinOverlay.tsx';
 import { FollowOverlay } from '../overlay/FollowOverlay.tsx';
 import { ViewerInfoOverlay } from '../overlay/ViewerInfoOverlay.tsx';
+import { GiftOverlay } from '../overlay/GiftOverlay.tsx';
 
 export function OverlayGalleryCard(props: IProps) {
   const user = useAuth().user;
@@ -42,6 +43,8 @@ export function OverlayGalleryCard(props: IProps) {
         return ROUTES.OVERLAY.FOLLOW(user?.id || '');
       case TIKTOK_EVENT_ENUM.VIEWER_INFO:
         return ROUTES.OVERLAY.VIEWER_INFO(user?.id || '');
+      case TIKTOK_EVENT_ENUM.GIFT_COMBO:
+        return ROUTES.OVERLAY.GIFT(user?.id || '');
     }
   }
 
@@ -63,6 +66,8 @@ export function OverlayGalleryCard(props: IProps) {
         return t('follow');
       case TIKTOK_EVENT_ENUM.VIEWER_INFO:
         return t('viewer_info');
+      case TIKTOK_EVENT_ENUM.GIFT_COMBO:
+        return t('gift');
     }
   }
 
@@ -76,6 +81,8 @@ export function OverlayGalleryCard(props: IProps) {
         return <FollowOverlay />;
       case TIKTOK_EVENT_ENUM.VIEWER_INFO:
         return <ViewerInfoOverlay />;
+      case TIKTOK_EVENT_ENUM.GIFT_COMBO:
+        return <GiftOverlay />;
     }
   }
 

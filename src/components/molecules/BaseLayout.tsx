@@ -1,4 +1,4 @@
-import { ReactNode, useEffect } from 'react';
+import { ReactNode } from 'react';
 import { useSubscription } from 'react-stomp-hooks';
 import { PAGE_TYPE_ENUM } from '../../enums/page-type-enum';
 import { IResDataMessageTiktokEvent } from '../../models/response/IResDataMessageTiktokEvent';
@@ -15,9 +15,6 @@ export function BaseLayout(props: IProps) {
   const user = auth.user;
   const streamingAction = new StreamingAction();
   const param = useParams();
-  useEffect(() => {
-    console.log(param);
-  }, [param]);
 
   function checkAccountId() {
     if (user?.id) {
@@ -29,7 +26,6 @@ export function BaseLayout(props: IProps) {
 
   useSubscription('/topic/event/' + checkAccountId() + '/', (message) => getMessage(message.body));
   useSubscription('/topic/viewer-info/' + checkAccountId(), (message) => {
-    console.log(message.body);
     dispatch(streamingAction.viewerInfo(parseInt(message.body))).then();
   });
 

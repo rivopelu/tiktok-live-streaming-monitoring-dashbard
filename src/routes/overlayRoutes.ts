@@ -4,6 +4,7 @@ import { PAGE_TYPE_ENUM } from '../enums/page-type-enum.ts';
 import { JoinOverlayPage } from '../pages/overlay/JoinOverlayPage.tsx';
 import { FollowOverlayPage } from '../pages/overlay/FollowOverlayPage.tsx';
 import { ViewerInfoOverlay } from '../components/overlay/ViewerInfoOverlay.tsx';
+import { GiftOverlayPage } from '../pages/overlay/GiftOverlayPage.tsx';
 
 export const overlayRoutes = [
   {
@@ -24,6 +25,11 @@ export const overlayRoutes = [
   {
     route: ROUTES.OVERLAY.VIEWER_INFO(':accountId'),
     elements: ViewerInfoOverlay,
+    type: PAGE_TYPE_ENUM.FULL_PAGE,
+  },
+  {
+    route: ROUTES.OVERLAY.GIFT(':accountId'),
+    elements: GiftOverlayPage,
     type: PAGE_TYPE_ENUM.FULL_PAGE,
   },
 ];

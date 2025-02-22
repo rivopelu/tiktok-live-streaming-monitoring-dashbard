@@ -16,6 +16,7 @@ export function OverlayGalleryPage() {
           <OverlayGalleryCard type={TIKTOK_EVENT_ENUM.JOIN} />
           <OverlayGalleryCard type={TIKTOK_EVENT_ENUM.FOLLOW} />
           <OverlayGalleryCard type={TIKTOK_EVENT_ENUM.VIEWER_INFO} />
+          <OverlayGalleryCard type={TIKTOK_EVENT_ENUM.GIFT_COMBO} />
         </div>
       </PageContainer>
     </div>

@@ -47,5 +47,6 @@
   "follow" : "follow",
   "share" : "share",
   "viewer_info" : "viewer info",
-  "live_monitoring" : "Live monitoring"
+  "live_monitoring" : "Live monitoring",
+  "gift" : "gift"
 }
