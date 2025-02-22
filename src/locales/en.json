@@ -46,5 +46,6 @@
   "join" : "join",
   "follow" : "follow",
   "share" : "share",
-  "viewer_info" : "viewer info"
+  "viewer_info" : "viewer info",
+  "live_monitoring" : "Live monitoring"
 }
