@@ -10,6 +10,7 @@ export function useLiveHistoryPage() {
 
   const streamingAction = new StreamingAction();
   const loadingList = Streaming?.listStreamingRoom?.loading;
+  const paginatedData = Streaming?.listStreamingRoom?.paginated_data;
   const [dataList, setDataList] = useState<IResListStreamingRoom[]>([]);
 
   useEffect(() => {
@@ -20,5 +21,5 @@ export function useLiveHistoryPage() {
     dispatch(streamingAction.getListStreamingRoom()).then();
   }, []);
 
-  return { dataList, loadingList };
+  return { dataList, loadingList, paginatedData };
 }
