@@ -45,5 +45,6 @@
   "copy_url" : "copy url",
   "join" : "join",
   "follow" : "follow",
-  "share" : "share"
+  "share" : "share",
+  "viewer_info" : "viewer info"
 }

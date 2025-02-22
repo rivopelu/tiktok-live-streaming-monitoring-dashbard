@@ -7,6 +7,9 @@ import { useAppDispatch, useAppSelector } from '../../redux/store.ts';
 import { IconButton } from '../atoms/IconButton.tsx';
 import { StreamingStatusText } from '../atoms/StreamingStatusText.tsx';
 import { Dropdown } from '../atoms/Dropdown.tsx';
+import { Card } from '../atoms/Card.tsx';
+import { twMerge } from 'tailwind-merge';
+import { useData } from '../../hooks/useData.ts';
 
 export function TopBar() {
   const dispatch = useAppDispatch();
@@ -17,7 +20,7 @@ export function TopBar() {
   const [activeStreaming, setActiveStreaming] = useState<typeActiveStreaming>();
 
   useEffect(() => {
-    dispatch(accountAction.checkStatusStreaming());
+    dispatch(accountAction.checkStatusStreaming()).then();
   }, []);
 
   useEffect(() => {
@@ -44,7 +47,24 @@ export function TopBar() {
               </IconButton>
             }
           >
-            <h1>HELLO</h1>
+            <Card>
+              {useData().profileMenuList.map((item, i) => {
+                const Icon = item.icon;
+                return (
+                  <div
+                    onClick={item.onClick}
+                    key={i}
+                    className={twMerge(
+                      'flex items-center gap-2 px-4 py-2  cursor-pointer',
+                      'hover:bg-primary-main/30 duration-200 active:bg-primary-main/20',
+                    )}
+                  >
+                    <Icon />
+                    <div>{item.label}</div>
+                  </div>
+                );
+              })}
+            </Card>
           </Dropdown>
         </div>
       </div>

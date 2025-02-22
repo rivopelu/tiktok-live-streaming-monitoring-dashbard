@@ -1,9 +1,12 @@
 import { IListSidebar } from '../models/data/IListSidebar.ts';
-import { MdDashboard, MdMonitor, MdOutlineVideoLibrary } from 'react-icons/md';
+import { MdDashboard, MdLogout, MdMonitor, MdOutlineVideoLibrary, MdPerson } from 'react-icons/md';
 import { ROUTES } from '../routes/routes.ts';
 import { t } from 'i18next';
+import { useAuth } from '../providers/UseAuth.tsx';
 
 export function useData() {
+  const auth = useAuth();
+
   const listSidebar: IListSidebar[] = [
     {
       label: t('dashboard'),
@@ -22,8 +25,26 @@ export function useData() {
     },
   ];
 
+  const profileMenuList = [
+    {
+      label: t('profile'),
+      icon: MdPerson,
+      onClick: () => {
+        alert('OKE');
+      },
+    },
+    {
+      label: t('logout'),
+      icon: MdLogout,
+      onClick: () => {
+        auth.logOut();
+      },
+    },
+  ];
+
   return {
     listSidebar,
+    profileMenuList,
   };
 }
 
