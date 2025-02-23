@@ -21,11 +21,11 @@ export class StreamingAction extends BaseActions {
     };
   }
 
-  getListStreamingRoom() {
+  getListStreamingRoom(param?: string) {
     return async (dispatch: Dispatch) => {
       dispatch(this.action.setListStreamingRoom({ loading: true, data: undefined }));
       await this.httpService
-        .GET(ENDPOINT.GET_STREAMING_ROOM())
+        .GET(ENDPOINT.GET_STREAMING_ROOM() + (param || ''))
         .then((res: BaseResponsePaginated<IResListStreamingRoom[]>) => {
           dispatch(
             this.action.setListStreamingRoom({

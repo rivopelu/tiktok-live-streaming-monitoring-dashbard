@@ -3,6 +3,7 @@ import { twMerge } from 'tailwind-merge';
 import { Skeleton } from '../atoms/Skeleton.tsx';
 import { IResPaginatedData } from '../../models/response/IResModel.ts';
 import { PaginationGroup } from './PaginationGroup.tsx';
+import { IOnchangePaginationData } from '../../models/data/IOnchangePaginationData.ts';
 
 export function Table(props: IProps) {
   function tableRow(i: number, item: any, loading?: boolean) {
@@ -27,10 +28,6 @@ export function Table(props: IProps) {
 
   return (
     <div>
-      <div>
-        <PaginationGroup />
-      </div>
-
       <div className={'border rounded-md overflow-hidden'}>
         <table className="table-auto  w-full bg-white ">
           <thead className={'border-b '}>
@@ -49,6 +46,9 @@ export function Table(props: IProps) {
           </tbody>
         </table>
       </div>
+      <div className={'mt-8 mb-16'}>
+        <PaginationGroup paginatedData={props.paginatedData} onChange={props.onChangePagination} />
+      </div>
     </div>
   );
 }
@@ -62,5 +62,6 @@ interface IProps {
   columns: ITableColumns<any>[];
   data: any[];
   loading?: boolean;
+  onChangePagination: (page: IOnchangePaginationData) => void;
   paginatedData?: IResPaginatedData;
 }

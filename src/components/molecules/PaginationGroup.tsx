@@ -1,8 +1,9 @@
 import { InputSelect } from '../atoms/InputSelect.tsx';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { IResPaginatedData } from '../../models/response/IResModel.ts';
 import { MdArrowBack, MdArrowDownward, MdArrowForward } from 'react-icons/md';
 import { twMerge } from 'tailwind-merge';
+import { IOnchangePaginationData } from '../../models/data/IOnchangePaginationData.ts';
 
 export function PaginationGroup(props: IProps) {
   const [selectedSize, setSelectedSize] = useState(props?.paginatedData?.size || 5);
@@ -11,25 +12,26 @@ export function PaginationGroup(props: IProps) {
 
   function onChangeSize(value: number) {
     setSelectedSize(value);
+    setCurrentPage(0);
+    props?.onChange({ page: 0, size: value });
   }
 
   function onClickNumber(value: number) {
     setCurrentPage(value);
+    props?.onChange({ page: value, size: selectedSize });
   }
 
   function onClickNext() {
     if (currentPage < pageCount - 1) {
       setCurrentPage(currentPage + 1);
+      props?.onChange({ page: currentPage + 1, size: selectedSize });
     }
   }
-
-  useEffect(() => {
-    console.log(currentPage);
-  }, [currentPage]);
 
   function onClickBack() {
     if (currentPage > 0) {
       setCurrentPage(currentPage - 1);
+      props?.onChange({ page: currentPage - 1, size: selectedSize });
     }
   }
 
@@ -66,7 +68,7 @@ export function PaginationGroup(props: IProps) {
                       `flex items-center cursor-pointer justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 `,
                       `${
                         index === currentPage
-                          ? 'z-10 text-black  border-green-400 bg-primary-main/10 hover:bg-blue-100 hover:text-blue-700'
+                          ? 'z-10 text-black   bg-primary-main/10 hover:bg-blue-100 hover:text-blue-700'
                           : ''
                       }`,
                     )}
@@ -89,5 +91,6 @@ export function PaginationGroup(props: IProps) {
 }
 
 interface IProps {
-  paginatedData: IResPaginatedData;
+  paginatedData?: IResPaginatedData;
+  onChange: (page: IOnchangePaginationData) => void;
 }

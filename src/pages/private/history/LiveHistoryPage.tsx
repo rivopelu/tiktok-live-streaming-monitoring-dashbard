@@ -25,7 +25,6 @@ export function LiveHistoryPage() {
       title: t('total_like'),
       content: (e) => <div>{e.total_like}</div>,
     },
-
     {
       title: t('total_viewer'),
       content: (e) => <div>{e.total_viewers}</div>,
@@ -52,7 +51,13 @@ export function LiveHistoryPage() {
       <div className={'grid gap-5 mt-8'}>
         <Heading text={t('live_history')} />
         <div>
-          <Table loading={page.loadingList} data={page.dataList} columns={column} />
+          <Table
+            paginatedData={page.paginatedData}
+            onChangePagination={page.onChangePagination}
+            loading={page.loadingList}
+            data={page.dataList}
+            columns={column}
+          />
         </div>
       </div>
     </PageContainer>
