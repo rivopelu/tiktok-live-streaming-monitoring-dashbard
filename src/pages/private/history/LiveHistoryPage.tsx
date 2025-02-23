@@ -7,6 +7,8 @@ import { IResListStreamingRoom } from '../../../models/response/IResListStreamin
 import { IconButton } from '../../../components/atoms/IconButton.tsx';
 import { MdInfoOutline } from 'react-icons/md';
 import DateHelper from '../../../helper/date-helper.ts';
+import { Link } from 'react-router-dom';
+import { ROUTES } from '../../../routes/routes.ts';
 
 export function LiveHistoryPage() {
   const page = useLiveHistoryPage();
@@ -37,12 +39,12 @@ export function LiveHistoryPage() {
     },
     {
       title: '',
-      content: () => (
-        <div>
+      content: (e) => (
+        <Link to={ROUTES.PRIVATE.DETAIL_STREAMING_ROOM(e.id)}>
           <IconButton>
             <MdInfoOutline />
           </IconButton>
-        </div>
+        </Link>
       ),
     },
   ];

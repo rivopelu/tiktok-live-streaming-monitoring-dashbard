@@ -7,6 +7,7 @@ import { IRouteList } from '../models/data/IRouteList.ts';
 import { overlayRoutes } from './overlayRoutes.ts';
 import { HomePage } from '../pages/public/home/HomePage.tsx';
 import { LiveHistoryPage } from '../pages/private/history/LiveHistoryPage.tsx';
+import { DetailStreamingRoomPage } from '../pages/private/history/DetailStreamingRoomPage.tsx';
 
 export const privateRoutes: IRouteList[] = [
   ...overlayRoutes,
@@ -34,6 +35,11 @@ export const privateRoutes: IRouteList[] = [
   {
     route: ROUTES.PRIVATE.HISTORY(),
     elements: LiveHistoryPage,
+    type: PAGE_TYPE_ENUM.PRIMARY,
+  },
+  {
+    route: ROUTES.PRIVATE.DETAIL_STREAMING_ROOM(':id'),
+    elements: DetailStreamingRoomPage,
     type: PAGE_TYPE_ENUM.PRIMARY,
   },
 ];

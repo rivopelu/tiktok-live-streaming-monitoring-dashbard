@@ -9,6 +9,7 @@ export const ROUTES = {
     MONITORING: () => `/dashboard/monitoring`,
     OVERLAY_GALLERY: () => `/dashboard/overlay_gallery`,
     HISTORY: () => `/dashboard/history`,
+    DETAIL_STREAMING_ROOM: (id: string) => `/dashboard/history/streaming-room/${id}`,
   },
   OVERLAY: {
     CHAT: (accountId: string) => `/overlay/chat/${accountId}`,
