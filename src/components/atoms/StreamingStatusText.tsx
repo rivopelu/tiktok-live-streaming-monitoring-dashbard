@@ -7,7 +7,7 @@ import { useAuth } from '../../providers/UseAuth.tsx';
 export function StreamingStatusText() {
   const [statusMessage, setStatusMessage] = useState<STREAMING_STATUS_ENUM | undefined>(undefined);
   const auth = useAuth();
-  const username = auth.user?.tiktok_username;
+  const username = auth.user?.id;
   useSubscription('/topic/streaming-status/' + username, (message) =>
     setStatusMessage(message.body as STREAMING_STATUS_ENUM),
   );
