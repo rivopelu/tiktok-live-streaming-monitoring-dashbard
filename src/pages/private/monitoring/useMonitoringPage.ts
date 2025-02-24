@@ -51,7 +51,6 @@ export function useMonitoringPage() {
         setDataGift((e) => [parseData, ...e].splice(0, 5));
         return;
       case TIKTOK_EVENT_ENUM.GIFT_COMBO:
-        console.log(parseData);
         setDataGiftCombo((e) => [parseData, ...e].splice(0, 5));
         return;
       default:

@@ -5,6 +5,7 @@ export interface IResDataMessageTiktokEvent {
   tiktok_username: string;
   tiktok_user_profile_name: string;
   profile_picture_url: string;
+  viewer_count: number;
   type: TIKTOK_EVENT_ENUM;
   tiktok_profile_name: string;
   comment: string;

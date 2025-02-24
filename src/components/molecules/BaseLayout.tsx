@@ -8,6 +8,7 @@ import { useAppDispatch } from '../../redux/store';
 import { Sidebar } from './Sidebar';
 import { TopBar } from './TopBar.tsx';
 import { useParams } from 'react-router-dom';
+import { TIKTOK_EVENT_ENUM } from '../../enums/tiktok_event_enum.ts';
 
 export function BaseLayout(props: IProps) {
   const dispatch = useAppDispatch();
@@ -25,13 +26,15 @@ export function BaseLayout(props: IProps) {
   }
 
   useSubscription('/topic/event/' + checkAccountId() + '/', (message) => getMessage(message.body));
-  useSubscription('/topic/viewer-info/' + checkAccountId(), (message) => {
-    dispatch(streamingAction.viewerInfo(parseInt(message.body))).then();
-  });
 
   function getMessage(res: string) {
     const data: IResDataMessageTiktokEvent = JSON.parse(res);
-    dispatch(streamingAction.messageEvent(data)).then();
+    if (data.type === TIKTOK_EVENT_ENUM.VIEWER_COUNT) {
+      const count = data.viewer_count;
+      dispatch(streamingAction.viewerInfo(count)).then();
+    } else {
+      dispatch(streamingAction.messageEvent(data)).then();
+    }
   }
 
   function checkPage() {

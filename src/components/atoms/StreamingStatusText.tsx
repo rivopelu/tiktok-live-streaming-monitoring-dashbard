@@ -7,10 +7,12 @@ import { useAuth } from '../../providers/UseAuth.tsx';
 export function StreamingStatusText() {
   const [statusMessage, setStatusMessage] = useState<STREAMING_STATUS_ENUM | undefined>(undefined);
   const auth = useAuth();
-  const username = auth.user?.id;
-  useSubscription('/topic/streaming-status/' + username, (message) =>
-    setStatusMessage(message.body as STREAMING_STATUS_ENUM),
-  );
+  const id = auth.user?.id;
+
+  useSubscription('/topic/streaming-status/' + id, (message) => {
+    const data = JSON.parse(message.body);
+    setStatusMessage(data.status as STREAMING_STATUS_ENUM);
+  });
 
   function checkColor() {
     switch (statusMessage) {
